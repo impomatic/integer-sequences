@@ -11,13 +11,11 @@
 # x = 9 OEIS entry A025424, https://oeis.org/A025424
 # x = 10 OEIS entry A025425, https://oeis.org/A025425
 
-# Set the default depth to x
-
-def squares(n, depth = 4, high = Math.sqrt(n).to_i, terms = [], res = [])
-  if depth.zero?
+def squares(n, high = Math.sqrt(n).to_i, terms = [], res = [])
+  if terms.size == 4  # number of squares to partition into
     res << terms if n.zero?
   else
-    high.downto(0) { |r| squares(n - r * r, depth - 1, r, terms + [r], res) }
+    high.downto(0) { |r| squares(n - r * r, r, terms + [r], res) }
   end
   res
 end
